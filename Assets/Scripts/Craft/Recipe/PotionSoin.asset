@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be32a30666789140ac8fec81355f047, type: 3}
+  m_Name: PotionSoin
+  m_EditorClassIdentifier: 
+  ingredients:
+  - {fileID: 11400000, guid: e898c02acd707f34ea2dbfc88d5f8c21, type: 2}
+  - {fileID: 11400000, guid: ae13179d35028534a9605cc67e5dc808, type: 2}
+  result: {fileID: 11400000, guid: 73d895de28ef81d4f881688612baa419, type: 2}

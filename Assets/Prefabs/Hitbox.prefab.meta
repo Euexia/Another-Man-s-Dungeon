@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/MobSpawner.prefab.meta
+guid: 532df075e9c1a6545a7ac0957e66932f
+========
+guid: 110822ef52b1c284294753836e4c93d5
+>>>>>>>> origin/CombatControllerMB1:Assets/Prefabs/Hitbox.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973e465b9b3620948a321207e410c7c6, type: 3}
+  m_Name: Epic
+  m_EditorClassIdentifier: 
+  itemsToSpawn:
+  - {fileID: 11400000, guid: 96e148192ce263e4bb7907c6b7d2d5ac, type: 2}
+  - {fileID: 11400000, guid: 263db5346ae182e43a85d68a72ac1b76, type: 2}
+  - {fileID: 11400000, guid: 707cb39d437606741a1e48489a3fde3a, type: 2}
+  - {fileID: 11400000, guid: b5df6009e1ab0f04e9343ee90612dd85, type: 2}
+  - {fileID: 11400000, guid: 1105797895dd3974593349c05b461b78, type: 2}
+  - {fileID: 11400000, guid: 900960800a986ca48bb686c63148629b, type: 2}
+  - {fileID: 11400000, guid: 2484f30618d67b247a40a021a84622f7, type: 2}
+  - {fileID: 11400000, guid: 244de66e95036994c94b1eaad4926ad7, type: 2}
+  - {fileID: 11400000, guid: 65e7c48a26133eb4486879bf7d132d00, type: 2}
+  - {fileID: 11400000, guid: ad04411452bc9a4429565f116cb737ba, type: 2}
+  - {fileID: 11400000, guid: ad10b87243767574cbdd3d967b8ed33b, type: 2}
+  - {fileID: 11400000, guid: f19600b7f32b56946a1fdf5f2c5f7c3e, type: 2}
+  - {fileID: 11400000, guid: 104931e0374b3aa4f8bd367dfd19ec0e, type: 2}
+  - {fileID: 11400000, guid: 70567a2b0a685e042b440247f9d22440, type: 2}
+  minCount: 1
+  maxCount: 1
