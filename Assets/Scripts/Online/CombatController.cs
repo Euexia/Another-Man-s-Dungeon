@@ -15,7 +15,7 @@ public class CombatController : NetworkBehaviour
     [SerializeField] private GameObject HitboxPrefab;
     [SerializeField] private Transform ModelRoot;
     [SerializeField] private Transform CameraRoot;
-    private Animator PlayerAnimator;
+    [SerializeField] private Animator PlayerAnimator;
     private int comboCount = 0;
     private Coroutine comboCoroutine;
 
@@ -34,7 +34,7 @@ public class CombatController : NetworkBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        if (audioSource == null )
+        if (audioSource == null)
         {
             audioSource = GetComponent<AudioSource>();
         }
@@ -135,7 +135,11 @@ public class CombatController : NetworkBehaviour
     private void ResetCombo()
     {
         comboCount = 0;
-        //SetAnimation(weaponType + "Idle");
+        /*PlayerAnimator.ResetTrigger("Attacking1");
+        PlayerAnimator.ResetTrigger("Attacking2");
+        PlayerAnimator.ResetTrigger("Attacking3");
+        PlayerAnimator.ResetTrigger("Attacking4");*/
+        SetAnimation("StopAttacking");
     }
 
     private IEnumerator WaitAndResetCombo()
@@ -147,7 +151,7 @@ public class CombatController : NetworkBehaviour
 
     private IEnumerator ComboTick()
     {
-        //SetAnimation(weaponType + "Attack" + comboCount.ToString());
+        SetAnimation("Attacking" + comboCount.ToString());
         yield return new WaitForSeconds(1f);
         ResetCombo();
     }
@@ -156,31 +160,36 @@ public class CombatController : NetworkBehaviour
     {
         if (!isLocalPlayer) { return; }
 
+        // Limiter le combo à 4 attaques
         if (comboCount >= 4)
         {
             return;
         }
 
+        // Incrémente le compteur de combo
+        comboCount++;
+
+        // Déclenche l'animation correspondante
+        SetAnimation("Attacking" + comboCount.ToString());
+        Debug.Log("Attacking" + comboCount.ToString());
+
+        // Arrêter la coroutine précédente si elle est toujours en cours
         if (comboCoroutine != null)
         {
             StopCoroutine(comboCoroutine);
         }
 
-        comboCount++;
+        // Redémarrer la coroutine pour réinitialiser le combo après un certain temps
+        comboCoroutine = StartCoroutine(WaitAndResetCombo());
 
-        if (comboCount >= 4)
-        {
-            comboCoroutine = StartCoroutine(WaitAndResetCombo());
-        }
-        else
-        {
-            comboCoroutine = StartCoroutine(ComboTick());
-        }
-
+        // Jouer le son de l'épée
         PlaySwordSound();
+
+        // Créer une hitbox
         CmdCreateHitbox(NetworkClient.localPlayer, new Vector3(4, 4, 4));
 
-        //CreateHitbox(new Vector3(1, 1, 1));
+        // Ajouter un petit cooldown entre les attaques pour limiter la vitesse d'attaque
+        currCooldown = cooldown;
     }
     private void HandleCombat(bool pressing)
     {
