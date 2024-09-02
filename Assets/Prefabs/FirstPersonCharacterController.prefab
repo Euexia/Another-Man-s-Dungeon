@@ -814,12 +814,12 @@ MonoBehaviour:
   HitboxPrefab: {fileID: 1169305782704711723, guid: 532df075e9c1a6545a7ac0957e66932f, type: 3}
   ModelRoot: {fileID: 1562731983527892215}
   CameraRoot: {fileID: 5776462179203208855}
-  PlayerAnimator: {fileID: 5252375679658883720}
   weaponType: Axe
   isRange: 0
   damage: 10
   swordSound1: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   swordSound2: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  gunSound: {fileID: 8300000, guid: 0dbe91efb8ee94e6695ef0f552d202ce, type: 3}
 --- !u!114 &4090609396020732146
 MonoBehaviour:
   m_ObjectHideFlags: 0

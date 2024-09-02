@@ -15,7 +15,7 @@ public class CombatController : NetworkBehaviour
     [SerializeField] private GameObject HitboxPrefab;
     [SerializeField] private Transform ModelRoot;
     [SerializeField] private Transform CameraRoot;
-    [SerializeField] private Animator PlayerAnimator;
+    private Animator PlayerAnimator;
     private int comboCount = 0;
     private Coroutine comboCoroutine;
 
@@ -28,7 +28,9 @@ public class CombatController : NetworkBehaviour
 
     [SerializeField] private AudioClip swordSound1;
     [SerializeField] private AudioClip swordSound2;
+    [SerializeField] private AudioClip gunSound;
     private AudioSource audioSource;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,8 @@ public class CombatController : NetworkBehaviour
         {
             currCooldown = Math.Max(0, currCooldown - Time.deltaTime);
         }
+
+        SendDebugRaycast();
     }
     private void FixedUpdate()
     {
@@ -80,7 +84,8 @@ public class CombatController : NetworkBehaviour
         if (enemy.tag == "Enemy")
         {
             enemy.GetComponent<MonsterController>().TakeDamage(damage);
-        } else if (enemy.tag == "Player")
+        }
+        else if (enemy.tag == "Player")
         {
             enemy.GetComponent<PlayerMovementController>().TakeDamage(enemy, damage);
         }
@@ -89,14 +94,14 @@ public class CombatController : NetworkBehaviour
     private void SendDebugRaycast()
     {
         RaycastHit hit;
-        if (Physics.Raycast(ModelRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        if (Physics.Raycast(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(ModelRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Debug.DrawRay(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             //Debug.Log("Did Hit");
         }
         else
         {
-            Debug.DrawRay(ModelRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            Debug.DrawRay(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             //Debug.Log("Did not Hit");
         }
     }
@@ -105,7 +110,7 @@ public class CombatController : NetworkBehaviour
     {
 
         RaycastHit hit;
-        Physics.Raycast(ModelRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity);
+        Physics.Raycast(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity);
 
         return hit;
     }
@@ -135,11 +140,7 @@ public class CombatController : NetworkBehaviour
     private void ResetCombo()
     {
         comboCount = 0;
-        /*PlayerAnimator.ResetTrigger("Attacking1");
-        PlayerAnimator.ResetTrigger("Attacking2");
-        PlayerAnimator.ResetTrigger("Attacking3");
-        PlayerAnimator.ResetTrigger("Attacking4");*/
-        SetAnimation("StopAttacking");
+        //SetAnimation(weaponType + "Idle");
     }
 
     private IEnumerator WaitAndResetCombo()
@@ -151,7 +152,7 @@ public class CombatController : NetworkBehaviour
 
     private IEnumerator ComboTick()
     {
-        SetAnimation("Attacking" + comboCount.ToString());
+        //SetAnimation(weaponType + "Attack" + comboCount.ToString());
         yield return new WaitForSeconds(1f);
         ResetCombo();
     }
@@ -160,36 +161,31 @@ public class CombatController : NetworkBehaviour
     {
         if (!isLocalPlayer) { return; }
 
-        // Limiter le combo à 4 attaques
         if (comboCount >= 4)
         {
             return;
         }
 
-        // Incrémente le compteur de combo
-        comboCount++;
-
-        // Déclenche l'animation correspondante
-        SetAnimation("Attacking" + comboCount.ToString());
-        Debug.Log("Attacking" + comboCount.ToString());
-
-        // Arrêter la coroutine précédente si elle est toujours en cours
         if (comboCoroutine != null)
         {
             StopCoroutine(comboCoroutine);
         }
 
-        // Redémarrer la coroutine pour réinitialiser le combo après un certain temps
-        comboCoroutine = StartCoroutine(WaitAndResetCombo());
+        comboCount++;
 
-        // Jouer le son de l'épée
+        if (comboCount >= 4)
+        {
+            comboCoroutine = StartCoroutine(WaitAndResetCombo());
+        }
+        else
+        {
+            comboCoroutine = StartCoroutine(ComboTick());
+        }
+
         PlaySwordSound();
-
-        // Créer une hitbox
         CmdCreateHitbox(NetworkClient.localPlayer, new Vector3(4, 4, 4));
 
-        // Ajouter un petit cooldown entre les attaques pour limiter la vitesse d'attaque
-        currCooldown = cooldown;
+        //CreateHitbox(new Vector3(1, 1, 1));
     }
     private void HandleCombat(bool pressing)
     {
@@ -202,6 +198,8 @@ public class CombatController : NetworkBehaviour
                 {
                     CmdDealMonsterDamage(result.transform.gameObject);
                 };
+
+                audioSource.PlayOneShot(gunSound);
             }
             else
             {
