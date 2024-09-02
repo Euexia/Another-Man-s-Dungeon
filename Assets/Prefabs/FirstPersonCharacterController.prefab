@@ -755,7 +755,6 @@ MonoBehaviour:
   PlayerGui: {fileID: 2917873062149384}
   UICamera: {fileID: 2881795362525652650}
   rb: {fileID: 2941347423189969080}
-  animator: {fileID: 5252375679658883720}
   healthBar: {fileID: 6995080759174914270}
   healthText: {fileID: 4723049056846141810}
   roundText: {fileID: 9082751069920806269}
@@ -907,7 +906,7 @@ MonoBehaviour:
   - {fileID: 5839966999522223253}
   inventoryParent: {fileID: 1472060293729543160}
   storageParent: {fileID: 7109732372655958743}
-  handParent: {fileID: 8286635159006019536}
+  handParent: {fileID: 8719615617759045291}
   itemPrefab: {fileID: 2663416163909636493}
   cam: {fileID: 1465814743072176744}
 --- !u!136 &1401897784522932907
@@ -4384,6 +4383,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1834939514502625358, guid: 21f14e10a2d6daa40b883b67ba9c6845, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1673502673979257865}
+    - targetCorrespondingSourceObject: {fileID: 1834939514502625358, guid: 21f14e10a2d6daa40b883b67ba9c6845, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4664618505387778887}
   m_SourcePrefab: {fileID: 100100000, guid: 21f14e10a2d6daa40b883b67ba9c6845, type: 3}
 --- !u!1 &73459396299587241 stripped
 GameObject:
@@ -4849,6 +4851,27 @@ MonoBehaviour:
     spineStiffness: 0.5
     pullBodyVertical: 0.5
     pullBodyHorizontal: 0
+--- !u!95 &4664618505387778887
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73459396299587241}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 51e65ec65629e3b43a05e3e30a703b69, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1bbebfc53a58f244f84ae7d819766571, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &251420882557499047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1949707754158174272, guid: 21f14e10a2d6daa40b883b67ba9c6845, type: 3}

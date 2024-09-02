@@ -15,7 +15,6 @@ public class PlayerMovementController : NetworkBehaviour
     [SerializeField] private GameObject PlayerGui;
     [SerializeField] private GameObject UICamera;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Animator animator;
 
     [SerializeField] private RawImage healthBar;
     [SerializeField] private TextMeshProUGUI healthText;
@@ -143,8 +142,8 @@ public class PlayerMovementController : NetworkBehaviour
         Vector3 moveDirection = (forward * zDirection) + (right * xDirection);
 
         // Mise à jour des valeurs du blend tree
-        animator.SetFloat("Forward", zDirection);
-        animator.SetFloat("Sided", xDirection);
+        _animator.SetFloat("Forward", zDirection);
+        _animator.SetFloat("Sided", xDirection);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
