@@ -97,7 +97,11 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
         for (int i = 0; i < handParent.childCount; i++)
         {
             handParent.GetChild(i).gameObject.SetActive(false);
+            handParent.GetChild(i).gameObject.transform.SetParent(null);
+
         }
+
+        CmdUnequipItem();
 
         foreach (GameObject slot in hotbarSlots)
         {
@@ -114,14 +118,23 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
                     ItemSO itemData = heldItem.GetComponent<InventoryItem>().itemScriptableObject;
                     combatController.weaponType = itemData.type;
                     combatController.isRange = itemData.isRange;
-                    Debug.Log(combatController.weaponType);
 
-                    for (int i = 0; i < handParent.childCount; i++)
+                    for (int i = 0; i < playerItems.Count; i++)
                     {
-                        if (handParent.GetChild(i).GetComponent<ItemHand>().itemScriptableObject
-                            == hotbarSlots[selectedHotbarSlot].GetComponent<InventorySlot>().HeldItem.GetComponent<InventoryItem>().itemScriptableObject)
+                        GameObject playerItem = playerItems[i];
+
+                        if (playerItem.GetComponent<ItemPickable>().itemScriptableObject.name == hotbarSlots[selectedHotbarSlot].GetComponent<InventorySlot>().HeldItem.GetComponent<InventoryItem>().itemScriptableObject.name)
                         {
-                            handParent.GetChild(i).gameObject.SetActive(true);
+                            playerItem.SetActive(true);
+                            playerItem.GetComponent<BoxCollider>().isTrigger = true;
+                            playerItem.GetComponent<Rigidbody>().useGravity = false;
+                            playerItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                            playerItem.transform.parent = handParent.transform;
+                            playerItem.transform.position = handParent.transform.position;
+
+                            CmdEquipItem(playerItem);
+
+                            break;
                         }
                     }
                 }
@@ -195,18 +208,11 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
                 // Si on relâche l'item ailleurs (retourne l'item au dernier slot)
                 else
                 {
-                    lastItemSlot.GetComponent<InventorySlot>().SetHeldItem(draggedObject);
-                    draggedObject.transform.SetParent(lastItemSlot.transform);
+                    CmdDropItem(draggedObject.GetComponent<InventoryItem>().itemScriptableObject.name);
+
+                    lastItemSlot.GetComponent<InventorySlot>().HeldItem = null;
+                    Destroy(draggedObject);
                 }
-
-                draggedObject.transform.rotation = draggedObject.transform.rotation;
-            }
-            else
-            {
-                CmdDropItem(draggedObject.GetComponent<InventoryItem>().itemScriptableObject.name);
-
-                lastItemSlot.GetComponent<InventorySlot>().HeldItem = null;
-                Destroy(draggedObject);
             }
 
             draggedObject = null;
@@ -308,6 +314,50 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
     }
 
     [Command]
+    void CmdEquipItem(GameObject equippedItem)
+    {
+        RpcEquipItem(equippedItem);
+    }
+
+    [Command]
+    void CmdUnequipItem()
+    {
+        Transform handParent = connectionToClient.identity.gameObject.GetComponent<InventoryManager>().handParent;
+        for (int i = 0; i < handParent.childCount; i++)
+        {
+            handParent.GetChild(i).gameObject.SetActive(false);
+            handParent.GetChild(i).gameObject.transform.SetParent(null);
+
+        }
+
+        RpcUnequipItem(connectionToClient.identity);
+    }
+
+    [ClientRpc]
+    void RpcEquipItem(GameObject equippedItem)
+    {
+        equippedItem.SetActive(true);
+        equippedItem.GetComponent<BoxCollider>().isTrigger = true;
+        equippedItem.GetComponent<Rigidbody>().useGravity = false;
+        equippedItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        equippedItem.transform.parent = handParent.transform;
+        equippedItem.transform.position = handParent.transform.position;
+    }
+
+    [ClientRpc]
+    void RpcUnequipItem(NetworkIdentity identity)
+    {
+        Transform handParent = identity.gameObject.GetComponent<InventoryManager>().handParent;
+        for (int i = 0; i < handParent.childCount; i++)
+        {
+            handParent.GetChild(i).gameObject.SetActive(false);
+            handParent.GetChild(i).gameObject.transform.SetParent(null);
+
+        }
+    }
+
+
+    [Command]
     void CmdDropItem(string testItem)
     {
         Debug.Log(testItem);
@@ -317,12 +367,10 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
         for (int i = 0; i < playerItems.Count; i++)
         {
             GameObject playerItem = playerItems[i];
-            Debug.Log("itering: " + playerItem);
 
             if (playerItem.GetComponent<ItemPickable>().itemScriptableObject.name == testItem)
             {
-                Debug.Log("trouve");
-
+                playerItem.transform.SetParent(null);
                 playerItem.SetActive(true);
                 playerItem.transform.position = position;
 
@@ -342,8 +390,12 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
     [ClientRpc]
     void RpcDropItem(GameObject playerItem, Vector3 position)
     {
+        playerItem.transform.SetParent(null);
         playerItem.SetActive(true);
         playerItem.transform.position = position;
+        playerItem.GetComponent<BoxCollider>().isTrigger = false;
+        playerItem.GetComponent<Rigidbody>().useGravity = true;
+        playerItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
     }
 }
 
