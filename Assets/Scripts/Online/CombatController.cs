@@ -40,7 +40,6 @@ public class CombatController : NetworkBehaviour
         {
             audioSource = GetComponent<AudioSource>();
         }
-        //PlayerAnimator = ModelRoot.transform.Find("Model").GetComponent<Animator>();
         //SetAnimation(weaponType + "Idle");
     }
 
@@ -140,7 +139,7 @@ public class CombatController : NetworkBehaviour
     private void ResetCombo()
     {
         comboCount = 0;
-        //SetAnimation(weaponType + "Idle");
+        SetAnimation("StopAttacking");
     }
 
     private IEnumerator WaitAndResetCombo()
@@ -152,7 +151,7 @@ public class CombatController : NetworkBehaviour
 
     private IEnumerator ComboTick()
     {
-        //SetAnimation(weaponType + "Attack" + comboCount.ToString());
+        SetAnimation("Attacking" + comboCount.ToString());
         yield return new WaitForSeconds(1f);
         ResetCombo();
     }
