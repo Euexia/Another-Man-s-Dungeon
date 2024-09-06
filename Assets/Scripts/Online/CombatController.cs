@@ -15,6 +15,7 @@ public class CombatController : NetworkBehaviour
     [SerializeField] private GameObject HitboxPrefab;
     [SerializeField] private Transform ModelRoot;
     [SerializeField] private Transform CameraRoot;
+    private GameObject PlayerModel;
     private Animator PlayerAnimator;
     private int comboCount = 0;
     private Coroutine comboCoroutine;
@@ -31,16 +32,44 @@ public class CombatController : NetworkBehaviour
     [SerializeField] private AudioClip gunSound;
     private AudioSource audioSource;
 
-
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            audioSource = GetComponent<AudioSource>();
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
-        //SetAnimation(weaponType + "Idle");
+
+        // Assigner le parent contenant Model1 et Model2
+        GameObject parentModel = transform.Find("Model")?.gameObject;
+
+        if (parentModel == null)
+        {
+            Debug.LogError("Le parent Model est introuvable !");
+            return;
+        }
+
+        // Sélectionner le bon modèle en fonction de l'ID du joueur (Model1 ou Model2)
+        GameObject SelectedModel = parentModel.transform.Find("Model" + (1 + NetworkClient.localPlayer.netId % 2).ToString())?.gameObject;
+
+        if (SelectedModel == null)
+        {
+            Debug.LogError("Modèle sélectionné introuvable !");
+            return;
+        }
+
+        // Assigner l'Animator du modèle sélectionné
+        PlayerAnimator = SelectedModel.GetComponentInChildren<Animator>();
+
+        if (PlayerAnimator == null)
+        {
+            Debug.LogError("Animator introuvable sur le modèle sélectionné !");
+        }
+        else
+        {
+            SelectedModel.SetActive(true);  // Activer le bon modèle
+        }
     }
 
     // Update is called once per frame
@@ -53,6 +82,7 @@ public class CombatController : NetworkBehaviour
 
         SendDebugRaycast();
     }
+
     private void FixedUpdate()
     {
         SendDebugRaycast();
@@ -60,7 +90,14 @@ public class CombatController : NetworkBehaviour
 
     private void SetAnimation(string animationName)
     {
-        PlayerAnimator.SetTrigger(animationName);
+        if (PlayerAnimator != null)
+        {
+            PlayerAnimator.SetTrigger(animationName);
+        }
+        else
+        {
+            Debug.LogError("PlayerAnimator est null !");
+        }
     }
 
     [Command]
@@ -96,21 +133,17 @@ public class CombatController : NetworkBehaviour
         if (Physics.Raycast(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
             Debug.DrawRay(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            //Debug.Log("Did Hit");
         }
         else
         {
             Debug.DrawRay(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            //Debug.Log("Did not Hit");
         }
     }
 
     private RaycastHit SendRaycast()
     {
-
         RaycastHit hit;
         Physics.Raycast(CameraRoot.transform.position, CameraRoot.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity);
-
         return hit;
     }
 
@@ -144,7 +177,6 @@ public class CombatController : NetworkBehaviour
 
     private IEnumerator WaitAndResetCombo()
     {
-        // Attendre 1 seconde
         yield return new WaitForSeconds(1f);
         ResetCombo();
     }
@@ -183,9 +215,8 @@ public class CombatController : NetworkBehaviour
 
         PlaySwordSound();
         CmdCreateHitbox(NetworkClient.localPlayer, new Vector3(4, 4, 4));
-
-        //CreateHitbox(new Vector3(1, 1, 1));
     }
+
     private void HandleCombat(bool pressing)
     {
         if (pressing && currCooldown <= 0)
@@ -196,7 +227,7 @@ public class CombatController : NetworkBehaviour
                 if (result.transform != null && (result.transform.tag == "Enemy" || result.transform.tag == "Player"))
                 {
                     CmdDealMonsterDamage(result.transform.gameObject);
-                };
+                }
 
                 audioSource.PlayOneShot(gunSound);
             }
