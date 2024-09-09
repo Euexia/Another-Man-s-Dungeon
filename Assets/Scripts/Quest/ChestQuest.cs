@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HerbQuest : MonoBehaviour
+public class ChestQuest : MonoBehaviour
 {
     public QuestManager questManager; // Assign in the Inspector
     public int questIndex; // Indice de la quête à mettre à jour, initialisé à 1
@@ -15,7 +15,6 @@ public class HerbQuest : MonoBehaviour
                 if (quest != null && quest.isActive)
                 {
                     questManager.UpdateQuestProgress(1);
-                    Destroy(gameObject);
                 }
             }
             else

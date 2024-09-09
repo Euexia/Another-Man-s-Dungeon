@@ -1,38 +1,59 @@
 using UnityEngine;
+using Mirror;
+using System.Collections.Generic;
 
-public class QuestGiver : MonoBehaviour
+public class QuestGiver : NetworkBehaviour
 {
     public GameObject dialoguePanel; // Assign in the Inspector
     public GameObject questSteps; // Assign in the Inspector
-    public GameObject rewardDialogue;
+    public GameObject rewardDialogue; // Assign in the Inspector
     public GameObject npc; // Assign in the Inspector
     public QuestManager questManager; // Assign in the Inspector
     public BoxCollider boxCollider; // Assign in the Inspector
 
+    [Header("Reward Settings")]
+    public List<RandomSpawningItems> rewardItemsList; // Liste de ScriptableObjects à assigner dans l'inspecteur
+
     private bool playerInRange = false;
+
+    [SyncVar(hook = nameof(OnQuestAcceptedChanged))]
     private bool questAccepted = false;
-    public int questIndex; // L'index de la quête à accepter, assigné dans l'inspecteur
+
+    private int questIndex; // L'index de la quête sera maintenant sélectionné aléatoirement
 
     private void Update()
     {
+        if (!isLocalPlayer) return;
+
         if (playerInRange && Input.GetKeyDown(KeyCode.A))
         {
             if (questAccepted)
             {
                 if (questManager.currentQuest != null && questManager.currentQuest.isComplete)
                 {
-                    boxCollider.enabled = true;
+                    CmdEnableCollider();
                 }
             }
             else
             {
-                AcceptQuest();
+                CmdAcceptQuest();
             }
+        }
+    }
+
+    [Command]
+    private void CmdEnableCollider()
+    {
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = true;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!isLocalPlayer) return;
+
         if (other.CompareTag("Player") && !questAccepted)
         {
             Debug.Log("Player entered NPC trigger zone");
@@ -40,16 +61,16 @@ public class QuestGiver : MonoBehaviour
             playerInRange = true;
         }
 
-        // Vérifie si la quête est complète lorsque le joueur entre en collision avec le NPC
         if (other.CompareTag("Player") && questAccepted && questManager.currentQuest != null && questManager.currentQuest.isComplete)
         {
-            // Activer le canvas de récompense
             rewardDialogue.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (!isLocalPlayer) return;
+
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player exited NPC trigger zone");
@@ -58,7 +79,8 @@ public class QuestGiver : MonoBehaviour
         }
     }
 
-    public void AcceptQuest()
+    [Command]
+    public void CmdAcceptQuest()
     {
         Debug.Log("Quest accepted");
 
@@ -80,42 +102,76 @@ public class QuestGiver : MonoBehaviour
             return;
         }
 
-        if (questIndex < 0 || questIndex >= questManager.quests.Count)
+        if (questManager.quests.Count == 0)
         {
-            Debug.LogError("Invalid quest index! Quest index: " + questIndex);
+            Debug.LogError("No quests available in questManager!");
             return;
         }
 
-        dialoguePanel.SetActive(false);
-        questSteps.SetActive(true);
-        questManager.StartQuest(questIndex); // Passer l'index de la quête
+        // Sélectionner un questIndex aléatoire
+        questIndex = Random.Range(0, questManager.quests.Count);
+
         questAccepted = true;
+        questManager.StartQuest(questIndex);
+        RpcUpdateQuestUI();
+    }
 
-        // Désactiver le BoxCollider du NPC
-        if (boxCollider != null)
+    private void OnQuestAcceptedChanged(bool oldQuestAccepted, bool newQuestAccepted)
+    {
+        if (newQuestAccepted)
         {
-            boxCollider.enabled = false;
-        }
-        else
-        {
-            Debug.LogError("boxCollider is not assigned!");
-        }
+            dialoguePanel.SetActive(false);
+            questSteps.SetActive(true);
 
-        // Mettre à jour l'interface utilisateur de suivi de quête
+            if (boxCollider != null)
+            {
+                boxCollider.enabled = false;
+            }
+        }
+    }
+
+    [ClientRpc]
+    private void RpcUpdateQuestUI()
+    {
         questManager.UpdateQuestUI();
     }
 
-    public void ClaimReward()
+    [Command]
+    public void CmdClaimReward()
     {
         Debug.Log("Reward claimed");
 
-        // Hide all quest-related UI elements
+        if (questManager.currentQuest != null && questManager.currentQuest.isComplete && rewardItemsList != null && rewardItemsList.Count > 0)
+        {
+            // Sélectionner un ScriptableObject aléatoire de la liste
+            int randomSOIndex = Random.Range(0, rewardItemsList.Count);
+            RandomSpawningItems selectedRewardItems = rewardItemsList[randomSOIndex];
+
+            if (selectedRewardItems.itemsToSpawn.Count > 0)
+            {
+                // Sélectionner un objet aléatoire dans le ScriptableObject sélectionné
+                int randomItemIndex = Random.Range(0, selectedRewardItems.itemsToSpawn.Count);
+                ItemSO randomItemSO = selectedRewardItems.itemsToSpawn[randomItemIndex];
+
+                if (randomItemSO.prefab != null)
+                {
+                    GameObject weapon = Instantiate(randomItemSO.prefab, transform.position + transform.forward * 2, Quaternion.identity);
+                    NetworkServer.Spawn(weapon);
+                }
+            }
+        }
+
+        RpcHideQuestUI();
+
+        if (boxCollider != null) boxCollider.enabled = false;
+        if (npc != null) npc.SetActive(false);
+    }
+
+    [ClientRpc]
+    private void RpcHideQuestUI()
+    {
         dialoguePanel.SetActive(false);
         questSteps.SetActive(false);
         rewardDialogue.SetActive(false);
-
-        // Hide NPC interaction
-        boxCollider.enabled = false;
-        npc.SetActive(false);
     }
 }
