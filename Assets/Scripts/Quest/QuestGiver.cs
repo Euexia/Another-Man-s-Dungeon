@@ -52,8 +52,11 @@ public class QuestGiver : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter");
+
         if (!isLocalPlayer) return;
 
+        Debug.Log("OnTriggerEnter isLocalPlayer");
         if (other.CompareTag("Player") && !questAccepted)
         {
             Debug.Log("Player entered NPC trigger zone");
@@ -65,6 +68,13 @@ public class QuestGiver : NetworkBehaviour
         {
             rewardDialogue.SetActive(true);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    { 
+        Debug.Log("OncollisionEnter");
+
+
     }
 
     private void OnTriggerExit(Collider other)

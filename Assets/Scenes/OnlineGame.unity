@@ -2098,6 +2098,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7058133936809010458, guid: ec902f6480d86834a8e7ecc87526332e, type: 3}
+      propertyPath: sceneId
+      value: 2441755378
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3065,6 +3069,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4224622391097606069, guid: 99d7066654546294d85332661405c5b3, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224622391097606069, guid: 99d7066654546294d85332661405c5b3, type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224622391097606069, guid: 99d7066654546294d85332661405c5b3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818365555482297009, guid: 99d7066654546294d85332661405c5b3, type: 3}
+      propertyPath: sceneId
+      value: 3842502037
+      objectReference: {fileID: 0}
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: questSteps
       value: 
@@ -3077,6 +3097,10 @@ PrefabInstance:
       propertyPath: dialoguePanel
       value: 
       objectReference: {fileID: 359927382}
+    - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
+      propertyPath: syncDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: rewardDialogue
       value: 
@@ -3107,7 +3131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8875545259701190329, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 1.88
       objectReference: {fileID: 0}
     - target: {fileID: 8875545259701190329, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3144,10 +3168,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7058487188348387013, guid: 99d7066654546294d85332661405c5b3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1778682451}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d7066654546294d85332661405c5b3, type: 3}
 --- !u!1001 &1330037456
 PrefabInstance:
@@ -4016,28 +4037,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2736728257799970908, guid: 742792758f20b624b86daee73489a57b, type: 3}
   m_PrefabInstance: {fileID: 1772680755}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1778682450 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7058487188348387013, guid: 99d7066654546294d85332661405c5b3, type: 3}
-  m_PrefabInstance: {fileID: 1309290772}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1778682451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778682450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 3842502037
-  _assetId: 783549694
-  serverOnly: 0
-  visibility: 0
-  hasSpawned: 0
 --- !u!114 &1799750973 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1718120177972627589, guid: ec902f6480d86834a8e7ecc87526332e, type: 3}
