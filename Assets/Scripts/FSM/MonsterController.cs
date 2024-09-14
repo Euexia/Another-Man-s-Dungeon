@@ -26,9 +26,12 @@ public class MonsterController : NetworkBehaviour
     [SyncVar]
     public bool canMove = false;
 
+    public SyncList<NetworkIdentity> players = new SyncList<NetworkIdentity>();
+
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame

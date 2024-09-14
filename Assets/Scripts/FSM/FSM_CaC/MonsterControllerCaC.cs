@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Mirror;
 
 public class MonsterControllerCaC : MonsterController
 {
-    public Transform player;
     public AIPath aiPath;
     public Animator animator;
     public Rigidbody rb;
@@ -42,6 +42,11 @@ public class MonsterControllerCaC : MonsterController
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
+        foreach (KeyValuePair<int, NetworkConnectionToClient> entry in NetworkServer.connections)
+        {
+            players.Add(entry.Value.identity);
+        }
+
         idleState = new IdleCaCState(this);
         chaseState = new ChaseState(this);
         attackState = new AttackState(this);
@@ -74,6 +79,25 @@ public class MonsterControllerCaC : MonsterController
         {
             rushState.OnCollisionEnter(collision);
         }
+    }
+
+    public Transform GetClosestPlayer(Transform point)
+    {
+        Transform closest = null;
+
+        foreach (NetworkIdentity player in players)
+        {
+            if (player != null)
+            {
+                float distanceToPlayer = Vector3.Distance(point.position, player.transform.position);
+
+                if (closest == null || Vector3.Distance(closest.position, point.position) > distanceToPlayer) {
+                    closest = player.transform;
+                }
+            }
+        }
+
+        return closest;
     }
 
 }

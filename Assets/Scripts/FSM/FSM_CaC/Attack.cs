@@ -17,7 +17,11 @@ public class AttackState : StateCaC
 
     public override void Update()
     {
-        float distanceToPlayer = Vector3.Distance(monsterController.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
+        Transform player = monsterController.GetClosestPlayer(monsterController.transform);
+
+        if (player == null) return;
+
+        float distanceToPlayer = Vector3.Distance(monsterController.transform.position, player.position);
 
         if (distanceToPlayer > attackDistance) // Si le joueur est hors de portée d'attaque
         {
@@ -32,7 +36,8 @@ public class AttackState : StateCaC
 
     private IEnumerator AttackRoutine()
     {
-        GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        GameObject Player = monsterController.GetClosestPlayer(monsterController.transform).gameObject;
+
         while (Vector3.Distance(monsterController.transform.position, Player.transform.position) <= attackDistance)
         {
             // Générer un nombre aléatoire entre 1 et 3

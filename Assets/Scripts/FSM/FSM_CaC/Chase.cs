@@ -7,18 +7,21 @@ using Mirror;
 public class ChaseState : StateCaC
 {
     private AIPath aiPath;
-    private Transform player;
     private bool playerDetected;
 
     public ChaseState(MonsterControllerCaC monsterController) : base(monsterController)
     {
         aiPath = monsterController.GetComponent<AIPath>();
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Assurez-vous que le joueur a ce tag
+        //player = GameObject.FindGameObjectWithTag("Player").transform; // Assurez-vous que le joueur a ce tag
         playerDetected = false;
     }
 
     public override void EnterState()
     {
+        Transform player = monsterController.GetClosestPlayer(monsterController.transform);
+
+        if (player == null) return;
+
         float distanceToPlayer = Vector3.Distance(monsterController.transform.position, player.position);
         if(monsterController.CanRush && distanceToPlayer <= monsterController.increasedChaseRadius && distanceToPlayer > 5)
         {
@@ -41,6 +44,10 @@ public class ChaseState : StateCaC
     [Server]
     public override void Update()
     {
+        Transform player = monsterController.GetClosestPlayer(monsterController.transform);
+
+        if (player == null) return;
+
         float distanceToPlayer = Vector3.Distance(monsterController.transform.position, player.position);
 
         if (distanceToPlayer < monsterController.initialChaseRadius)
