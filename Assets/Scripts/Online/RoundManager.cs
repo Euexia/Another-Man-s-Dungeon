@@ -381,7 +381,7 @@ public class RoundManager : NetworkBehaviour
 
                     if (mapFolder != null)
                     {
-                        NetworkServer.UnSpawn(mapFolder);
+                        NetworkServer.UnSpawn(mapFolder.GetChild(0).gameObject);
                     }
 
                     Debug.Log("Teleporting player " + playerIdentity.netId.ToString() + " to map id: " + conn.identity.netId.ToString());
