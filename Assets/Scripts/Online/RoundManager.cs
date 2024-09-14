@@ -233,7 +233,9 @@ public class RoundManager : NetworkBehaviour
                         //Transform mapFolder = GameObject.Find("Map" + entry.Key.ToString()).transform;
                         Transform mapFolder = playerMapFolders[(int)conn.identity.netId].transform;
                         GameObject NewMap = Instantiate(chosenMap.gameObject, mapFolder);
-                        //NewMap.isStatic = true;
+                        NewMap.isStatic = true;
+
+                        Debug.Log(mapFolder.name + "; " + NewMap + "; " +  (int)conn.identity.netId);
 
                         //NewMap.transform.SetParent(mapFolder);
                         //NewMap.transform.position = mapFolder.transform.position;
