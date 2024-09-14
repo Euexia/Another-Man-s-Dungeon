@@ -235,6 +235,26 @@ public class RoundManager : NetworkBehaviour
                         GameObject NewMap = Instantiate(chosenMap.gameObject, mapFolder);
                         NewMap.isStatic = true;
 
+                        if (mapFolder == null)
+                        {
+                            Debug.LogError("mapFolder is null for player: " + player.name);
+                        }
+
+                        if (NewMap == null)
+                        {
+                            Debug.LogError("NewMap instantiation failed.");
+                        }
+
+                        if (astarPath == null)
+                        {
+                            Debug.LogError("astarPath is null.");
+                        }
+
+                        if (astarPath.gameObject.GetComponent<MapAstarManager>() == null)
+                        {
+                            Debug.LogError("MapAstarManager component is missing on astarPath GameObject.");
+                        }
+
                         Debug.Log(mapFolder.name + "; " + NewMap + "; " +  (int)conn.identity.netId);
 
                         //NewMap.transform.SetParent(mapFolder);
