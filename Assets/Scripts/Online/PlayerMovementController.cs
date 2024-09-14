@@ -64,17 +64,25 @@ public class PlayerMovementController : NetworkBehaviour
     private float footstepTimer = 0f;
     private bool isMoving = false;
 
+
     private void Start()
     {
         PlayerModel.SetActive(false);
+
+        // Assure-toi que l'écran de mort est désactivé au début
+        GameObject deathScreen = connectionToClient.identity.transform.Find("PlayerGui").Find("DeadScreen").gameObject;
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(false);
+        }
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-
     }
+
     private void Update()
     {
         if (SceneManager.GetActiveScene().name == "OnlineGame")
@@ -181,12 +189,51 @@ public class PlayerMovementController : NetworkBehaviour
         healthBar.rectTransform.sizeDelta = new Vector2((newValue / maxHealth) * 400, healthBar.rectTransform.sizeDelta.y);
         healthText.text = newValue.ToString() + " / " + maxHealth.ToString();
 
-        if (newValue <= 0 && isDead == false) {
+        if (newValue <= 0 && isDead == false)
+        {
             Debug.Log("Dead");
             isDead = true;
+
+            // Appelle la fonction pour montrer l'écran de mort
+            ShowDeathScreen();
+
             roundManager.PlayerDied();
         }
     }
+
+    // Fonction pour montrer l'écran de mort avec une durée de 10 secondes
+    public void ShowDeathScreen()
+    {
+        GameObject deathScreen = connectionToClient.identity.transform.Find("DeadScreen").gameObject;
+        if (deathScreen != null)
+        {
+            // Active l'écran de mort
+            deathScreen.SetActive(true);
+
+            // Désactive éventuellement les contrôles du joueur
+            PlayerGui.SetActive(false);
+            UICamera.SetActive(false);
+
+            // Lancer la coroutine pour désactiver l'écran de mort après 10 secondes
+            StartCoroutine(HideDeathScreenAfterDelay(deathScreen, 10f));
+        }
+    }
+
+    // Coroutine pour masquer l'écran de mort et réactiver l'UI après 10 secondes
+    private IEnumerator HideDeathScreenAfterDelay(GameObject deathScreen, float delay)
+    {
+        yield return new WaitForSeconds(delay); // Attendre 10 secondes
+
+        // Désactive l'écran de mort
+        deathScreen.SetActive(false);
+
+        // Réactive les éléments de l'UI
+        PlayerGui.SetActive(true);
+        UICamera.SetActive(true);
+
+        // Vous pouvez ici ajouter d'autres actions, comme permettre au joueur de respawn
+    }
+
 
     public void UpdateStatus(int round, int timer)
     {
