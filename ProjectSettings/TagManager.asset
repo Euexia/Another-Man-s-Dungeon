@@ -9,6 +9,7 @@ TagManager:
   - Effects
   - Weapon
   - Enemy
+  - AcceptButton
   layers:
   - Default
   - TransparentFX

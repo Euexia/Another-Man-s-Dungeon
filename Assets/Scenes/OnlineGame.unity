@@ -122,103 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &7394245
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1073730550291713612, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8618673641292504970, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-      propertyPath: m_Name
-      value: QuestCanva
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
 --- !u!1001 &72635271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -742,11 +645,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4833768574112450495, guid: f4c1ab01cce3344498755643a1be1e5a, type: 3}
   m_PrefabInstance: {fileID: 343528885}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &359927382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3471757780598184235, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-  m_PrefabInstance: {fileID: 7394245}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &367275418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1117,17 +1015,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6800356293229332167, guid: 416274a0a63517c40b315a92856eef88, type: 3}
   m_PrefabInstance: {fileID: 564498347}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &606670188 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2556880760516537251, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-  m_PrefabInstance: {fileID: 7394245}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &617830510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2089,14 +1976,18 @@ PrefabInstance:
     - target: {fileID: 1718120177972627589, guid: ec902f6480d86834a8e7ecc87526332e, type: 3}
       propertyPath: questStatusText
       value: 
-      objectReference: {fileID: 1840123243}
+      objectReference: {fileID: 0}
     - target: {fileID: 1718120177972627589, guid: ec902f6480d86834a8e7ecc87526332e, type: 3}
       propertyPath: questDescriptionText
       value: 
-      objectReference: {fileID: 606670188}
+      objectReference: {fileID: 0}
     - target: {fileID: 2852235158813005736, guid: ec902f6480d86834a8e7ecc87526332e, type: 3}
       propertyPath: m_Name
       value: QuestManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969232980821250990, guid: ec902f6480d86834a8e7ecc87526332e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7058133936809010458, guid: ec902f6480d86834a8e7ecc87526332e, type: 3}
       propertyPath: sceneId
@@ -2446,11 +2337,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3983169179464486330, guid: 6e9780d53ac5cdd43af20cf0c71faeec, type: 3}
   m_PrefabInstance: {fileID: 1103709816}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1107874869 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3372694891466058966, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-  m_PrefabInstance: {fileID: 7394245}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1133936497
 PrefabInstance:
@@ -3079,7 +2965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4224622391097606069, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4818365555482297009, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: sceneId
@@ -3088,7 +2974,7 @@ PrefabInstance:
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: questSteps
       value: 
-      objectReference: {fileID: 1107874869}
+      objectReference: {fileID: 0}
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: questManager
       value: 
@@ -3096,7 +2982,7 @@ PrefabInstance:
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: dialoguePanel
       value: 
-      objectReference: {fileID: 359927382}
+      objectReference: {fileID: 0}
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: syncDirection
       value: 1
@@ -3104,7 +2990,11 @@ PrefabInstance:
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: rewardDialogue
       value: 
-      objectReference: {fileID: 1351284017}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
+      propertyPath: acceptQuestButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5346234477902799606, guid: 99d7066654546294d85332661405c5b3, type: 3}
       propertyPath: rewardItemsList.Array.size
       value: 3
@@ -3243,11 +3133,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6016306558707969244, guid: 038c019db003bfd40ac5f59bf358472b, type: 3}
   m_PrefabInstance: {fileID: 1330037456}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1351284017 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3320980612384551259, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-  m_PrefabInstance: {fileID: 7394245}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1448785862
 PrefabInstance:
@@ -4122,17 +4007,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8008137217670276377, guid: 7e87f149581595d42a492f0f5ad5290b, type: 3}
   m_PrefabInstance: {fileID: 1820502822}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1840123243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4666184542831337864, guid: b26bbcba5e3474a468d3c45eedd65cc0, type: 3}
-  m_PrefabInstance: {fileID: 7394245}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1844463715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5106,5 +4980,4 @@ SceneRoots:
   - {fileID: 2045868698}
   - {fileID: 518585898}
   - {fileID: 1309290772}
-  - {fileID: 7394245}
   - {fileID: 971923552}
