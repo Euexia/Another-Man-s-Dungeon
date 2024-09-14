@@ -260,7 +260,9 @@ public class RoundManager : NetworkBehaviour
                         //NewMap.transform.SetParent(mapFolder);
                         //NewMap.transform.position = mapFolder.transform.position;
 
-                        NetworkServer.Spawn(NewMap);
+                        yield return new WaitForEndOfFrame();
+
+                        NetworkServer.Spawn(NewMap, conn);
 
                         RpcSwitchMap(NewMap, mapFolder);
                         RpcTeleportToSpawn(conn, NewMap, "PortalStart");
