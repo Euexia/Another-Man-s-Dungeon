@@ -36,7 +36,7 @@ public class PlayerMovementController : NetworkBehaviour
     [SyncVar(hook = nameof(UpdateHealthBar))]
     [SerializeField] private float health = 100;
 
-    [SyncVar(hook = nameof(OnDeadStateChanged))]
+    [SyncVar]
     [SerializeField] private bool isDead = false;
 
     [SyncVar]
@@ -188,6 +188,12 @@ public class PlayerMovementController : NetworkBehaviour
             Debug.Log("Dead");
             isDead = true;
 
+            if (isLocalPlayer)
+            {
+                deathScreen.SetActive(true);
+                Debug.Log("je suis mort");
+            }
+
             roundManager.PlayerDied();
         }
     }
@@ -215,27 +221,23 @@ public class PlayerMovementController : NetworkBehaviour
         roundText.text = indicator;
     }
 
-    public void OnDeadStateChanged(bool oldValue, bool newValue)
-    {
-        Debug.Log("je suis appellé pour etre mor");
-        if (isLocalPlayer)
-        {
-            Debug.Log("je suis mort ou vivant tout depend");
-            deathScreen.SetActive(newValue);
-            PlayerGui.SetActive(!newValue);
-            UICamera.SetActive(!newValue);
-        }
-    }
-
     [Server]
-    public void SetHealth(float newHealth)
+    public void SetHealth(NetworkConnectionToClient target, float newHealth)
     {
         health = Mathf.Max(newHealth, maxHealth);
         if (health > 0)
         {
             isDead = false;
             Debug.Log("healed");
+
+            RpcSwitchDeathScreen(target, false);
         }
+    }
+
+    [TargetRpc]
+    public void RpcSwitchDeathScreen(NetworkConnectionToClient target, bool enabled)
+    {
+        deathScreen.SetActive(enabled);
     }
 
     public float GetMaxHealth()

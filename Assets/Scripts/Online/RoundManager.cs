@@ -189,7 +189,7 @@ public class RoundManager : NetworkBehaviour
                         }
 
                         PlayerMovementController plrData = player.GetComponent<PlayerMovementController>();
-                        plrData.SetHealth(plrData.GetMaxHealth());
+                        plrData.SetHealth(conn, plrData.GetMaxHealth());
 
                         string portalName = "Portal_Player" + (1 + (int)conn.identity.netId % 2).ToString();
                         Debug.Log("Player id: " + conn.identity.netId.ToString() + ". portal name = " + portalName);
@@ -274,7 +274,7 @@ public class RoundManager : NetworkBehaviour
                         Debug.Log("map scannée");
 
                         PlayerMovementController plrData = player.GetComponent<PlayerMovementController>();
-                        plrData.SetHealth(plrData.GetMaxHealth());
+                        plrData.SetHealth(conn, plrData.GetMaxHealth());
 
                         playersAlive += 1;
                     }

@@ -118,6 +118,8 @@ public class CombatController : NetworkBehaviour
     {
         if (enemy == null) return;
 
+        Debug.Log("Damage: " + damage.ToString());
+
         if (enemy.tag == "Enemy")
         {
             enemy.GetComponent<MonsterController>().TakeDamage(damage);
