@@ -217,8 +217,10 @@ public class PlayerMovementController : NetworkBehaviour
 
     public void OnDeadStateChanged(bool oldValue, bool newValue)
     {
+        Debug.Log("je suis appellé pour etre mor");
         if (isLocalPlayer)
         {
+            Debug.Log("je suis mort ou vivant tout depend");
             deathScreen.SetActive(newValue);
             PlayerGui.SetActive(!newValue);
             UICamera.SetActive(!newValue);
