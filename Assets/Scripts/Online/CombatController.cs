@@ -124,6 +124,7 @@ public class CombatController : NetworkBehaviour
         else if (enemy.tag == "Player")
         {
             enemy.GetComponent<PlayerMovementController>().TakeDamage(enemy, damage);
+            Debug.Log("damage = " + damage);
         }
     }
 

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: UNCSword1
   m_EditorClassIdentifier: 
   name: Couteau
-  icon: {fileID: 21300026, guid: 09e4c6a7d75923945afe43953ef58ad2, type: 3}
   prefab: {fileID: 1276936732570696, guid: afd1345fc1f833043a856c36a6b5da2e, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 12

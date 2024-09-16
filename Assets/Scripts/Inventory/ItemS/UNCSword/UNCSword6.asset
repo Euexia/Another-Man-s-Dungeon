@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: UNCSword6
   m_EditorClassIdentifier: 
   name: "Ep\xE9e droite"
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 1747583778978990, guid: b7290dd9a4b832e4f8566b940003ba62, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 12

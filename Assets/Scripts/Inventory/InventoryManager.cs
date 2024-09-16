@@ -118,6 +118,7 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
                     ItemSO itemData = heldItem.GetComponent<InventoryItem>().itemScriptableObject;
                     combatController.weaponType = itemData.type;
                     combatController.isRange = itemData.isRange;
+                    combatController.damage = itemData.damage;
 
                     for (int i = 0; i < playerItems.Count; i++)
                     {

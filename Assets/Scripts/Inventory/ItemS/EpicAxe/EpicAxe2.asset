@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EpicAxe2
   m_EditorClassIdentifier: 
   name: Hache Terre Ancienne
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 153132, guid: 984357422a249c34e96a5e3550b4420b, type: 3}
   stackMax: 1
   type: Axe
   isRange: 0
+  damage: 50
