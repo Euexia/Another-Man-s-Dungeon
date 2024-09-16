@@ -112,7 +112,14 @@ public class CombatController : NetworkBehaviour
         NewHitbox.transform.rotation = ModelRoot.rotation;
         NewHitbox.transform.localScale = size;
         NetworkServer.Spawn(NewHitbox);
+        RpcSetHitboxOwner(NewHitbox, playerIdentity);
         Destroy(NewHitbox, 0.1f);
+    }
+
+    [ClientRpc]
+    void RpcSetHitboxOwner(GameObject hitbox, NetworkIdentity playerIdentity)
+    {
+        hitbox.GetComponent<HitboxManager>().plrIdentity = playerIdentity;
     }
 
     [Command]
