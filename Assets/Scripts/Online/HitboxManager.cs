@@ -24,6 +24,8 @@ public class HitboxManager : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        int damage = plrIdentity.gameObject.GetComponent<CombatController>().damage;
+
         if (other && (other.tag == "Enemy" || (other.tag == "Player" && other.GetComponent<NetworkIdentity>().netId != plrIdentity.netId)))
         {
             if (debounce.Find((x) => x == other.gameObject))
@@ -37,14 +39,14 @@ public class HitboxManager : NetworkBehaviour
             if (other.tag == "Enemy")
             {
                 MonsterController monsterHealth = other.GetComponent<MonsterController>();
-                monsterHealth.TakeDamage(10);
+                monsterHealth.TakeDamage(damage);
 
                 PlayHitSound(other.gameObject);
             }
             else if (other.tag == "Player")
             {
                 PlayerMovementController playerHealth = other.GetComponent<PlayerMovementController>();
-                playerHealth.TakeDamage(other.gameObject, 10);
+                playerHealth.TakeDamage(other.gameObject, damage);
 
                 PlayHitSound(other.gameObject);
             }

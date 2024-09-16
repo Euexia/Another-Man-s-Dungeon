@@ -92,6 +92,12 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
         }
     }
 
+    [Command(requiresAuthority = false)]
+    private void CmdChangeDamage(int newDamage)
+    {
+        combatController.damage = newDamage;
+    }
+
     private void HotbarItemChanged()
     {
         for (int i = 0; i < handParent.childCount; i++)
@@ -118,7 +124,7 @@ public class InventoryManager : NetworkBehaviour, IPointerDownHandler, IPointerU
                     ItemSO itemData = heldItem.GetComponent<InventoryItem>().itemScriptableObject;
                     combatController.weaponType = itemData.type;
                     combatController.isRange = itemData.isRange;
-                    combatController.damage = itemData.damage;
+                    CmdChangeDamage(itemData.damage);
 
                     for (int i = 0; i < playerItems.Count; i++)
                     {

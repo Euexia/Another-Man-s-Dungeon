@@ -20,12 +20,14 @@ public class CombatController : NetworkBehaviour
     private int comboCount = 0;
     private Coroutine comboCoroutine;
 
+    [SyncVar]
+    public int damage = 10;
+
     // TEMP VALUES
     public string weaponType = "Axe";
     float cooldown = 0.3f;
     float currCooldown = 0;
     public bool isRange = false;
-    public int damage = 10;
 
     [SerializeField] private AudioClip swordSound1;
     [SerializeField] private AudioClip swordSound2;
@@ -117,8 +119,6 @@ public class CombatController : NetworkBehaviour
     private void CmdDealMonsterDamage(GameObject enemy)
     {
         if (enemy == null) return;
-
-        Debug.Log("Damage: " + damage.ToString());
 
         if (enemy.tag == "Enemy")
         {
