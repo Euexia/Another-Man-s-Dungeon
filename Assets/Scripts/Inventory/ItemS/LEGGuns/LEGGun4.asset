@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LEGGun4
   m_EditorClassIdentifier: 
   name: LEGENDARY Gun
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 476736222645770112, guid: 88d3daa37e35af743bdeb47c203dc714, type: 3}
   stackMax: 1
   type: Gun
   isRange: 1
+  damage: 22

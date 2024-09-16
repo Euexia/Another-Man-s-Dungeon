@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LEGAxe4
   m_EditorClassIdentifier: 
   name: Marteau des Enfers
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 1629669245802534, guid: adcd3895f60c77541b00b3b6fe40f4ed, type: 3}
   stackMax: 1
   type: Axe
   isRange: 0
+  damage: 22

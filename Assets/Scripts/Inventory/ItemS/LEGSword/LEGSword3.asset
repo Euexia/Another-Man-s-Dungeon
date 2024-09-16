@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LEGSword3
   m_EditorClassIdentifier: 
   name: "Epee Roi D\xE9mon"
-  icon: {fileID: 21300026, guid: 09e4c6a7d75923945afe43953ef58ad2, type: 3}
   prefab: {fileID: 1925294732729548, guid: aafe4819ee380074c84dd31cc94ccf83, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 22

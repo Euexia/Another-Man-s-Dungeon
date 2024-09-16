@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LEGSword4
   m_EditorClassIdentifier: 
   name: "Ep\xE9e Bionique"
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 8040982007152180828, guid: 201b5f06ce8dd33459eb10950f48abd1, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 22

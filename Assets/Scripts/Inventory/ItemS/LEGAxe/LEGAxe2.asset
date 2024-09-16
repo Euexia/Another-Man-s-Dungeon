@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LEGAxe2
   m_EditorClassIdentifier: 
   name: Marteau Bionique
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 4356173084764101254, guid: c6bd0b457faad3d45931b6a1cd315010, type: 3}
   stackMax: 1
   type: Axe
   isRange: 0
+  damage: 22

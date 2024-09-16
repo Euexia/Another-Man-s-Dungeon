@@ -38,12 +38,12 @@ RectTransform:
   - {fileID: 6398949684254659993}
   - {fileID: 9081405609698202849}
   - {fileID: 845224988899084380}
-  - {fileID: 4056306338626810923}
   - {fileID: 3669574669428947474}
   - {fileID: 7214028679970473778}
   - {fileID: 7229015653452844515}
   - {fileID: 2395267728657885461}
   - {fileID: 2198173898434102791}
+  - {fileID: 4056306338626810923}
   m_Father: {fileID: 5413914010187474082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1346,9 +1346,9 @@ MonoBehaviour:
   HitboxPrefab: {fileID: 1169305782704711723, guid: 532df075e9c1a6545a7ac0957e66932f, type: 3}
   ModelRoot: {fileID: 1562731983527892215}
   CameraRoot: {fileID: 5776462179203208855}
+  damage: 10
   weaponType: Axe
   isRange: 0
-  damage: 10
   swordSound1: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   swordSound2: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   gunSound: {fileID: 8300000, guid: 0dbe91efb8ee94e6695ef0f552d202ce, type: 3}
@@ -4744,9 +4744,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8136003140113108827}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1117878157588243104}
