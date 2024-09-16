@@ -3,7 +3,6 @@ using Pathfinding;
 
 public class RushState : StateCaC
 {
-    private Transform player;
     private AIPath aiPath;
     private Vector3 rushDirection;
     private float originalSpeed;
@@ -12,12 +11,16 @@ public class RushState : StateCaC
     public RushState(MonsterControllerCaC monsterController) : base(monsterController)
     {
         aiPath = monsterController.GetComponent<AIPath>();
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Assurez-vous que le joueur a ce tag
+        //player = GameObject.FindGameObjectWithTag("Player").transform; // Assurez-vous que le joueur a ce tag
         isRushing = false;
     }
 
     public override void EnterState()
     {
+        Transform player = monsterController.GetClosestPlayer(monsterController.transform);
+
+        if (player == null) return;
+
         Debug.Log("Monster in Rush STATE");
 
         if (!isRushing)

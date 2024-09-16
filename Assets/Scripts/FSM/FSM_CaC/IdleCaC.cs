@@ -13,9 +13,13 @@ public class IdleCaCState : StateCaC
     }
     public override void Update()
     {
+        Transform player = monsterController.GetClosestPlayer(monsterController.transform);
+
+        if (player == null) return;
+
         SetAnimationTrigger("isIdle");
         // Logique pour l'état Idle
-        if (Vector3.Distance(monsterController.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < monsterController.initialChaseRadius) // distance de détection par exemple
+        if (Vector3.Distance(monsterController.transform.position, player.position) < monsterController.initialChaseRadius) // distance de détection par exemple
         {
             monsterController.TransitionToState(monsterController.chaseState);
             //monsterController.TransitionToState(monsterController.rushState);
