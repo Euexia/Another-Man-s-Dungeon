@@ -17,4 +17,4 @@ MonoBehaviour:
   stackMax: 1
   type: Sword
   isRange: 0
-  damage: 22
+  damage: 20

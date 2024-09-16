@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EPICSword5
   m_EditorClassIdentifier: 
   name: "Ep\xE9e ZigZag"
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 1547624585078224, guid: fc8fef65fd656f144acfaa240b6a8336, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 17

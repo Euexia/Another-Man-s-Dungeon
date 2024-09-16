@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EPICSword3
   m_EditorClassIdentifier: 
   name: Sabre Bionique
-  icon: {fileID: 21300026, guid: 09e4c6a7d75923945afe43953ef58ad2, type: 3}
   prefab: {fileID: 1565935239740110, guid: 4d5e45013e2bb8042b0207cf4a203289, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 17

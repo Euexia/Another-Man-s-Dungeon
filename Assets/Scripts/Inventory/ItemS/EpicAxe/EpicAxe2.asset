@@ -17,4 +17,4 @@ MonoBehaviour:
   stackMax: 1
   type: Axe
   isRange: 0
-  damage: 50
+  damage: 18

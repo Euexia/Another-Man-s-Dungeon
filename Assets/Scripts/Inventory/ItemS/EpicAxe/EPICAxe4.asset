@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EPICAxe4
   m_EditorClassIdentifier: 
   name: Masse d'arme
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 138258, guid: 8e0ba5a27e6e44846a80b38bd2d8dbfd, type: 3}
   stackMax: 1
   type: Axe
   isRange: 0
+  damage: 18

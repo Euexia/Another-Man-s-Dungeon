@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RARESword1
   m_EditorClassIdentifier: 
   name: Epee Courbe
-  icon: {fileID: 21300026, guid: 09e4c6a7d75923945afe43953ef58ad2, type: 3}
   prefab: {fileID: 1335285506301150, guid: c5bf6d5f525ff8e44bfe8c506ea0c519, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 14

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RAREGun1
   m_EditorClassIdentifier: 
   name: RARE Gun
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 1347048607590356, guid: 22b909b0a6fa6314fb4e27f75b84e054, type: 3}
   stackMax: 1
   type: Gun
   isRange: 1
+  damage: 14

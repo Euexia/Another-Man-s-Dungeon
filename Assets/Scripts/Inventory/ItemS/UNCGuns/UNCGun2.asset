@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: UNCGun2
   m_EditorClassIdentifier: 
   name: UNCGun
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 1610940023509618, guid: ff2e06c12409f0a4f8bd7fa5e37b0979, type: 3}
   stackMax: 1
   type: Gun
   isRange: 1
+  damage: 12

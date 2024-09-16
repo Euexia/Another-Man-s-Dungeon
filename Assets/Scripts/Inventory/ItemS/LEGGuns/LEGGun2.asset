@@ -17,4 +17,4 @@ MonoBehaviour:
   stackMax: 1
   type: Gun
   isRange: 1
-  damage: 22
+  damage: 20

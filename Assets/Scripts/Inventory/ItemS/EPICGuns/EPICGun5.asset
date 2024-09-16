@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EPICGun5
   m_EditorClassIdentifier: 
   name: EPIC Gun
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 1842149770523142, guid: 54699471bf1a5a54ca9f005605d0e22a, type: 3}
   stackMax: 1
   type: Gun
   isRange: 1
+  damage: 16

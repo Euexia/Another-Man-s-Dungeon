@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RARESword4
   m_EditorClassIdentifier: 
   name: "Ep\xE9e tranchante"
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 138470, guid: 630627b9fd11d4340a42d44621ddcfa7, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 14

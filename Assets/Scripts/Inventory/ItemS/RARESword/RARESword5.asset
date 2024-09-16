@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RARESword5
   m_EditorClassIdentifier: 
   name: "Ep\xE9e Rouge"
-  icon: {fileID: 21300000, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   prefab: {fileID: 194264, guid: e6fa756c603368045a35e5b45a1b84cb, type: 3}
   stackMax: 1
   type: Sword
   isRange: 0
+  damage: 14
