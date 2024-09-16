@@ -188,8 +188,11 @@ public class PlayerMovementController : NetworkBehaviour
             Debug.Log("Dead");
             isDead = true;
 
-            // Appelle la fonction pour montrer l'écran de mort
-            ShowDeathScreen();
+            if (isLocalPlayer)
+            {
+                Debug.Log("death screen");
+                ShowDeathScreen();
+            }
 
             roundManager.PlayerDied();
         }
@@ -206,20 +209,7 @@ public class PlayerMovementController : NetworkBehaviour
         UICamera.SetActive(false);
     }
 
-    // Fonction pour masquer l'écran de mort lorsque le round suivant commence
-    [ClientRpc]
-    public void RpcHideDeathScreenAndReactivateUI()
-    {
-        // Désactive l'écran de mort
-        deathScreen.SetActive(false);
-
-        // Réactive les éléments de l'UI
-        PlayerGui.SetActive(true);
-        UICamera.SetActive(true);
-    }
-
-
-public void UpdateStatus(int round, int timer)
+    public void UpdateStatus(int round, int timer)
     {
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
@@ -250,6 +240,10 @@ public void UpdateStatus(int round, int timer)
         {
             isDead = false;
             Debug.Log("healed");
+
+            deathScreen.SetActive(false);
+            PlayerGui.SetActive(true);
+            UICamera.SetActive(true);
         }
     } 
 
