@@ -35,6 +35,7 @@ public class CombatController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -124,7 +125,6 @@ public class CombatController : NetworkBehaviour
         else if (enemy.tag == "Player")
         {
             enemy.GetComponent<PlayerMovementController>().TakeDamage(enemy, damage);
-            Debug.Log("damage = " + damage);
         }
     }
 
@@ -228,6 +228,7 @@ public class CombatController : NetworkBehaviour
                 if (result.transform != null && (result.transform.tag == "Enemy" || result.transform.tag == "Player"))
                 {
                     CmdDealMonsterDamage(result.transform.gameObject);
+                
                 }
 
                 audioSource.PlayOneShot(gunSound);

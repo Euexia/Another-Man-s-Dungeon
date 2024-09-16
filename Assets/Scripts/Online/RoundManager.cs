@@ -150,6 +150,8 @@ public class RoundManager : NetworkBehaviour
                 playersAlive = 0;
                 secondsLeft = maxRoundTimer;
 
+                NotifyPlayersRoundStart();
+
                 // Suppression d'une map 1v1 si elle existe
                 if (current1v1map != null)
                 {
@@ -482,6 +484,19 @@ public class RoundManager : NetworkBehaviour
             playersAlive -= 1;
             Debug.Log("server died");
             Debug.Log("There are " + playersAlive.ToString() + " players remaining.");
+        }
+    }
+
+    [Server]
+    private void NotifyPlayersRoundStart()
+    {
+        foreach (KeyValuePair<int, NetworkConnectionToClient> entry in NetworkServer.connections)
+        {
+            NetworkConnectionToClient conn = entry.Value;
+            GameObject player = conn.identity.gameObject;
+
+            // Appeler la fonction pour cacher l'écran de mort sur le client du joueur
+            player.GetComponent<PlayerMovementController>().RpcHideDeathScreenAndReactivateUI();
         }
     }
 }

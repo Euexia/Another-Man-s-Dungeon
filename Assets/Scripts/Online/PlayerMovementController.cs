@@ -201,7 +201,7 @@ public class PlayerMovementController : NetworkBehaviour
         }
     }
 
-    // Fonction pour montrer l'écran de mort avec une durée de 10 secondes
+    // Fonction pour montrer l'écran de mort sans limite de temps
     public void ShowDeathScreen()
     {
         GameObject deathScreen = connectionToClient.identity.transform.Find("DeadScreen").gameObject;
@@ -213,29 +213,27 @@ public class PlayerMovementController : NetworkBehaviour
             // Désactive éventuellement les contrôles du joueur
             PlayerGui.SetActive(false);
             UICamera.SetActive(false);
-
-            // Lancer la coroutine pour désactiver l'écran de mort après 10 secondes
-            StartCoroutine(HideDeathScreenAfterDelay(deathScreen, 10f));
         }
     }
 
-    // Coroutine pour masquer l'écran de mort et réactiver l'UI après 10 secondes
-    private IEnumerator HideDeathScreenAfterDelay(GameObject deathScreen, float delay)
+    // Fonction pour masquer l'écran de mort lorsque le round suivant commence
+    [ClientRpc]
+    public void RpcHideDeathScreenAndReactivateUI()
     {
-        yield return new WaitForSeconds(delay); // Attendre 10 secondes
+        GameObject deathScreen = connectionToClient.identity.transform.Find("DeadScreen").gameObject;
+        if (deathScreen != null)
+        {
+            // Désactive l'écran de mort
+            deathScreen.SetActive(false);
 
-        // Désactive l'écran de mort
-        deathScreen.SetActive(false);
-
-        // Réactive les éléments de l'UI
-        PlayerGui.SetActive(true);
-        UICamera.SetActive(true);
-
-        // Vous pouvez ici ajouter d'autres actions, comme permettre au joueur de respawn
+            // Réactive les éléments de l'UI
+            PlayerGui.SetActive(true);
+            UICamera.SetActive(true);
+        }
     }
 
 
-    public void UpdateStatus(int round, int timer)
+public void UpdateStatus(int round, int timer)
     {
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
