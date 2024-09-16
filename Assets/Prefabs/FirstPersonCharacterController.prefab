@@ -1285,6 +1285,7 @@ MonoBehaviour:
   PlayerModel: {fileID: 2829065275356256474}
   PlayerGui: {fileID: 2917873062149384}
   UICamera: {fileID: 2881795362525652650}
+  deathScreen: {fileID: 6723248676417785139}
   rb: {fileID: 2941347423189969080}
   healthBar: {fileID: 6995080759174914270}
   healthText: {fileID: 4723049056846141810}
@@ -4036,7 +4037,7 @@ GameObject:
   - component: {fileID: 4041833850709245954}
   - component: {fileID: 4423417455936942706}
   m_Layer: 5
-  m_Name: DeadScreen
+  m_Name: DeathScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

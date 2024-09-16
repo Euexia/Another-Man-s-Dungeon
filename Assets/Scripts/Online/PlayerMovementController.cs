@@ -14,6 +14,7 @@ public class PlayerMovementController : NetworkBehaviour
     [SerializeField] private GameObject PlayerModel;
     [SerializeField] private GameObject PlayerGui;
     [SerializeField] private GameObject UICamera;
+    [SerializeField] private GameObject deathScreen;
     [SerializeField] private Rigidbody rb;
 
     [SerializeField] private RawImage healthBar;
@@ -68,13 +69,6 @@ public class PlayerMovementController : NetworkBehaviour
     private void Start()
     {
         PlayerModel.SetActive(false);
-
-        // Assure-toi que l'écran de mort est désactivé au début
-        GameObject deathScreen = connectionToClient.identity.transform.Find("PlayerGui").Find("DeadScreen").gameObject;
-        if (deathScreen != null)
-        {
-            deathScreen.SetActive(false);
-        }
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -204,32 +198,24 @@ public class PlayerMovementController : NetworkBehaviour
     // Fonction pour montrer l'écran de mort sans limite de temps
     public void ShowDeathScreen()
     {
-        GameObject deathScreen = connectionToClient.identity.transform.Find("DeadScreen").gameObject;
-        if (deathScreen != null)
-        {
-            // Active l'écran de mort
-            deathScreen.SetActive(true);
+        // Active l'écran de mort
+        deathScreen.SetActive(true);
 
-            // Désactive éventuellement les contrôles du joueur
-            PlayerGui.SetActive(false);
-            UICamera.SetActive(false);
-        }
+        // Désactive éventuellement les contrôles du joueur
+        PlayerGui.SetActive(false);
+        UICamera.SetActive(false);
     }
 
     // Fonction pour masquer l'écran de mort lorsque le round suivant commence
     [ClientRpc]
     public void RpcHideDeathScreenAndReactivateUI()
     {
-        GameObject deathScreen = connectionToClient.identity.transform.Find("DeadScreen").gameObject;
-        if (deathScreen != null)
-        {
-            // Désactive l'écran de mort
-            deathScreen.SetActive(false);
+        // Désactive l'écran de mort
+        deathScreen.SetActive(false);
 
-            // Réactive les éléments de l'UI
-            PlayerGui.SetActive(true);
-            UICamera.SetActive(true);
-        }
+        // Réactive les éléments de l'UI
+        PlayerGui.SetActive(true);
+        UICamera.SetActive(true);
     }
 
 
