@@ -190,23 +190,11 @@ public class PlayerMovementController : NetworkBehaviour
 
             if (isLocalPlayer)
             {
-                Debug.Log("death screen");
-                ShowDeathScreen();
+                Debug.Log("je suis mort");
             }
 
             roundManager.PlayerDied();
         }
-    }
-
-    // Fonction pour montrer l'écran de mort sans limite de temps
-    public void ShowDeathScreen()
-    {
-        // Active l'écran de mort
-        deathScreen.SetActive(true);
-
-        // Désactive éventuellement les contrôles du joueur
-        PlayerGui.SetActive(false);
-        UICamera.SetActive(false);
     }
 
     public void UpdateStatus(int round, int timer)
@@ -241,11 +229,20 @@ public class PlayerMovementController : NetworkBehaviour
             isDead = false;
             Debug.Log("healed");
 
-            deathScreen.SetActive(false);
-            PlayerGui.SetActive(true);
-            UICamera.SetActive(true);
+            if (isLocalPlayer)
+            {
+                Debug.Log("je suis revivant");
+            }
         }
-    } 
+    }
+
+    [TargetRpc]
+    public void RpcSwitchDeathScreen(NetworkConnectionToClient target, bool enabled)
+    {
+        deathScreen.SetActive(enabled);
+        PlayerGui.SetActive(!enabled);
+        UICamera.SetActive(!enabled);
+    }
 
     public float GetMaxHealth()
     {
