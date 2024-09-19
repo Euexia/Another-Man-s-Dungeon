@@ -374,4 +374,33 @@ public class PlayerMovementController : NetworkBehaviour
 
         yield return null;
     }
+
+
+    [Server]
+    public void SetHealth(float newHealth)
+    {
+        health = Mathf.Max(newHealth, maxHealth);
+        UpdateHealthBar(health, newHealth);
+        if (health > 0)
+        {
+            isDead = false;
+            Debug.Log("healed");
+        }
+    }
+
+
+
+    public float Health
+    {
+        get { return health; }
+    }
+
+    [Command]
+    public void CmdUsePotion(float healAmount)
+    {
+        Debug.Log("CmdUsePotion called with healAmount: " + healAmount);
+        SetHealth(health + healAmount);
+    }
+
+
 }

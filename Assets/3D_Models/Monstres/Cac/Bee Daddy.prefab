@@ -1058,9 +1058,8 @@ MonoBehaviour:
   canvas: {fileID: 5712510264060127154}
   healthBar: {fileID: 3005749969469648441}
   healthText: {fileID: 4396752885045013680}
-  lootTable: {fileID: 11400000, guid: bb500fc4a3a9e8d4d9ade114782be17c, type: 2}
+  lootTable: {fileID: 11400000, guid: 4d16e4f318b4c874397c424904632375, type: 2}
   canMove: 0
-  player: {fileID: 0}
   aiPath: {fileID: 4227712936779669240}
   animator: {fileID: 8823294295021983993}
   rb: {fileID: 0}

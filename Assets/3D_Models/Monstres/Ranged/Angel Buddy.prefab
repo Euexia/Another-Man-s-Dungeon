@@ -414,8 +414,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fa2ed5b6485114799511580dcf0bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   maxHealth: 55
   health: 55
+  canvas: {fileID: 0}
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
+  lootTable: {fileID: 11400000, guid: 47261d3d9b506ff4db6302dbc9dd6b21, type: 2}
+  canMove: 0
   player: {fileID: 0}
   aiPath: {fileID: 7417384233567583985}
   animator: {fileID: 8745475356976692191}
