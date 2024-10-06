@@ -149,9 +149,12 @@ public class PlayerMovementController : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpForce);
-            PlayJumpSound();
-            wasGrounded = true;
+            if (IsGrounded())
+            {
+                rb.AddForce(Vector3.up * jumpForce);
+                PlayJumpSound();
+                wasGrounded = true;
+            }
         }
 
         rb.MovePosition(rb.position + moveDirection * Time.deltaTime * speed);
