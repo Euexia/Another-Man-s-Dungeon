@@ -23,6 +23,8 @@ public class PlayerMovementController : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI roundText;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [SerializeField] private TextMeshProUGUI endingText;
+
     [SerializeField] private Image bloodVignette;
     private Coroutine bloodVignetteCoroutine;
 
@@ -175,7 +177,10 @@ public class PlayerMovementController : NetworkBehaviour
     {
         health = Mathf.Max(health - value, 0);
 
-        PlayDamageSound();
+        if (health > 0)
+        {
+            PlayDamageSound();
+        }
 
         RpcTakeDamage(enemy.GetComponent<NetworkIdentity>().connectionToClient);
     }
@@ -216,12 +221,19 @@ public class PlayerMovementController : NetworkBehaviour
         } else if (round == -2)
         {
             indicator = "GAME ENDED !";
+            ShowEndingScreen();
         } else
         {
             indicator = "Round " + round.ToString();
         }
 
         roundText.text = indicator;
+    }
+
+    public void ShowEndingScreen()
+    {
+        endingText.text = isDead ? "YOU LOSE!" : "YOU WIN!";
+        endingText.transform.parent.gameObject.SetActive(true);
     }
 
     [Server]

@@ -37,6 +37,8 @@ public class RoundManager : NetworkBehaviour
 
     [SerializeField] private int mapSpacing = 10000;
 
+    [SerializeField] private List<GameObject> chests;
+
     [Header("GAME PROGRESSION (DO NOT TOUCH)")]
 
     [SyncVar]
@@ -74,6 +76,12 @@ public class RoundManager : NetworkBehaviour
     void Update()
     {
 
+    }
+
+    GameObject GetRandomChest()
+    {
+        GameObject chosenChest = chests[UnityEngine.Random.Range(0, chests.Count)];
+        return chosenChest;
     }
 
     MapData SelectRandomMap()
@@ -263,6 +271,16 @@ public class RoundManager : NetworkBehaviour
                         yield return new WaitForEndOfFrame();
 
                         NetworkServer.Spawn(NewMap, conn);
+
+                        foreach (Transform chestSpawn in NewMap.transform)
+                        {
+                            if (chestSpawn.name == "ChestSpawnPoint")
+                            {
+                                GameObject newChest = Instantiate(GetRandomChest(), NewMap.transform);
+                                newChest.transform.position = chestSpawn.transform.position;
+                                NetworkServer.Spawn(newChest);
+                            }
+                        }
 
                         RpcSwitchMap(NewMap, mapFolder);
                         RpcTeleportToSpawn(conn, NewMap, "PortalStart");

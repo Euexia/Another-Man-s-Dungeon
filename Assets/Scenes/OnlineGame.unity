@@ -1931,6 +1931,10 @@ MonoBehaviour:
   - name: Hell - 1v1
     gameObject: {fileID: 1558923400518302628, guid: 194959dacc403c44e95a0f194514faa5, type: 3}
   mapSpacing: 10000
+  chests:
+  - {fileID: 8153661525210307494, guid: 46be57bdf7e5e334ca8bedb9b6d0f9d3, type: 3}
+  - {fileID: 4970779893899992391, guid: 20063316b8bf1bc43a42675e79a95084, type: 3}
+  - {fileID: 3288373921586765605, guid: 216d321ec94801d4c9ba2143aff95d80, type: 3}
 --- !u!114 &1036970427
 MonoBehaviour:
   m_ObjectHideFlags: 0
