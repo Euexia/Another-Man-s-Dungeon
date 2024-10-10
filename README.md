@@ -1,5 +1,5 @@
 # Another Man's Dungeon
-###(Juillet / Aout 2024) 
+### (Juillet / Aout 2024) 
 ## Description du jeu
 Another Man's Dungeon est un projet de 4 etudiants du Gaming Campus s'essayant a la production video ludique en l'espace de 2 mois.
 Parcourez des maps variees en competition avec votre amis pour loot un maximum d'armes, et terrassez tous les monstres sur votre chemin pour gagner le duel final.
