@@ -22,7 +22,4 @@ Attaque : Clic gauche
 
 ## Crédits
 Développé par une équipe de quatre amis passionnés :  
-[Maurad Bahri](https://www.linkedin.com/in/maurad-bahri-2920b3265/) // [Gwendal Andre](https://www.linkedin.com/in/gwendal-andre-4a86b7253/) // [Lucie Quintana](https://www.linkedin.com/in/lucie-quintana-0174b6232/) // [Adrien Patte](https://www.linkedin.com/in/adrien-patte/)
-
-## Licence
-Ce projet est sous licence MIT. Consultez le fichier LICENCE pour plus d'informations.  
+[Maurad Bahri](https://www.linkedin.com/in/maurad-bahri-2920b3265/) // [Gwendal Andre](https://www.linkedin.com/in/gwendal-andre-4a86b7253/) // [Lucie Quintana](https://www.linkedin.com/in/lucie-quintana-0174b6232/) // [Adrien Patte](https://www.linkedin.com/in/adrien-patte/)     
