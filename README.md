@@ -17,7 +17,8 @@ Attaque : Clic gauche
 
 ## Captures d'écran
 ![MenuPrincipale](/Captures/Capture1.PNG)
-![InGame1](/Captures/Capture2.PNG)
+![Lobby](/Captures/Capture3.PNG)
+![InGame](/Captures/Capture2.PNG)
 
 ## Crédits
 Développé par une équipe de quatre amis passionnés :  
