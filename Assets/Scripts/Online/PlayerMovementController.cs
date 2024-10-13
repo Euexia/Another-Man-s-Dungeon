@@ -110,6 +110,7 @@ public class PlayerMovementController : NetworkBehaviour
                     PlayerGui.SetActive(true);
                     UICamera.SetActive(true);
                 }
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 SetSpawnPosition();
                 Debug.Log(gameObject.name + " Position is: " + gameObject.transform.position);
             }

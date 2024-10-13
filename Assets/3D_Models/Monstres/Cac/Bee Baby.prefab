@@ -77,7 +77,6 @@ MonoBehaviour:
   healthText: {fileID: 4730908524268733162}
   lootTable: {fileID: 11400000, guid: bb500fc4a3a9e8d4d9ade114782be17c, type: 2}
   canMove: 0
-  player: {fileID: 0}
   aiPath: {fileID: 4843867980347912318}
   animator: {fileID: 6180310250175653468}
   rb: {fileID: 0}
@@ -371,7 +370,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
