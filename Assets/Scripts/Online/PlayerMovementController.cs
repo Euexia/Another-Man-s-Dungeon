@@ -179,10 +179,8 @@ public class PlayerMovementController : NetworkBehaviour
 
         if (health > 0)
         {
-            PlayDamageSound();
+            RpcTakeDamage(enemy.GetComponent<NetworkIdentity>().connectionToClient);
         }
-
-        RpcTakeDamage(enemy.GetComponent<NetworkIdentity>().connectionToClient);
     }
 
     void UpdateHealthBar(float oldValue, float newValue)
@@ -369,6 +367,8 @@ public class PlayerMovementController : NetworkBehaviour
     [TargetRpc]
     void RpcTakeDamage(NetworkConnectionToClient conn)
     {
+        PlayDamageSound();
+
         if (bloodVignetteCoroutine != null)
         {
             StopCoroutine(bloodVignetteCoroutine);
